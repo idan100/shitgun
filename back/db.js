@@ -30,16 +30,27 @@ const Person = sequelize.define('Person', {
 );
 
 
+
+const selectAll = async () => {
+  try {
+    const persons = await Person.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] }
+    });
+    console.log("All persons:", JSON.stringify(persons, null, 2));
+    
+    sequelize.close()
+  } catch (error) {
+    console.error('Unable to select all from database:', error);
+  }
+}
+
+
 const testDB = async () => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     
-    const persons = await Person.findAll({
-      attributes: { exclude: ['createdAt', 'updatedAt'] }
-    });
-    //console.log(persons.every(person => person instanceof Person)); // true
-    console.log("All persons:", JSON.stringify(persons, null, 2));
+    await selectAll();
     
     sequelize.close()
   } catch (error) {
@@ -48,3 +59,25 @@ const testDB = async () => {
 }
 
 testDB();
+
+
+
+//const express = require('express');
+//const app = express();
+//
+//
+//app.get('/', (req, res) => {
+//  res.send('Hello, world!');
+//});
+//
+//
+//
+////app.use(express.static('build'));
+//
+//
+//const port = 3000; // Or any other port number you prefer
+//
+//app.listen(port, () => {
+//  console.log(`Server running on port ${port}`);
+//});
+//
