@@ -6,7 +6,10 @@ const sequelize = createConnection();
 
 router.get("/:classNumber", async (req, res) => {
   try {
-    const classes = await classesService.getAllClasses(sequelize);
+    const classes = await classesService.getAllClasses(
+      sequelize,
+      req.params.classNumber
+    );
     res.json(classes);
   } catch (error) {
     console.error("Error fetching classes:", error);

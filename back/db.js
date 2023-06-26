@@ -38,34 +38,34 @@ const createPerson = (sequelize) => {
   }
 };
 
-const createClass = (sequelize) => {
-  try {
-    const Class = sequelize.define(
-      "Class",
-      {
-        class_number: {
-          type: DataTypes.SMALLINT,
-          primaryKey: true,
-        },
-        has_projector: {
-          type: DataTypes.BOOLEAN,
-          allowNull: false,
-        },
-        has_computers: {
-          type: DataTypes.STRING,
-          allowNull: false,
-        },
-      },
-      {
-        tableName: "class",
-        schema: "keys",
-      }
-    );
-    return Class;
-  } catch (error) {
-    console.error("Unable to create connection:", error);
-  }
-};
+// const createClass = (sequelize) => {
+//   try {
+//     const Class = sequelize.define(
+//       "Class",
+//       {
+//         class_number: {
+//           type: DataTypes.SMALLINT,
+//           primaryKey: true,
+//         },
+//         has_projector: {
+//           type: DataTypes.BOOLEAN,
+//           allowNull: false,
+//         },
+//         has_computers: {
+//           type: DataTypes.STRING,
+//           allowNull: false,
+//         },
+//       },
+//       {
+//         tableName: "class",
+//         schema: "keys",
+//       }
+//     );
+//     return Class;
+//   } catch (error) {
+//     console.error("Unable to create connection:", error);
+//   }
+// };
 
 const createSchedule = (sequelize) => {
   try {
@@ -130,26 +130,26 @@ const selectAllPersons = async () => {
   }
 };
 
-const selectAllClasses = async (classNumber) => {
-  try {
-    const sequelize = createConnection();
-    const Class = createClass(sequelize);
+// const selectAllClasses = async (classNumber) => {
+//   try {
+//     const sequelize = createConnection();
+//     const Class = createClass(sequelize);
 
-    const classes = await Class.findAll({
-      attributes: { exclude: ["createdAt", "updatedAt"] },
-      where: {
-        class_number: {
-          [Op.like]: classNumber + "%",
-        },
-      },
-    });
+//     const classes = await Class.findAll({
+//       attributes: { exclude: ["createdAt", "updatedAt"] },
+//       where: {
+//         class_number: {
+//           [Op.like]: classNumber + "%",
+//         },
+//       },
+//     });
 
-    sequelize.close();
-    return classes;
-  } catch (error) {
-    console.error("Unable to select all from database:", error);
-  }
-};
+//     sequelize.close();
+//     return classes;
+//   } catch (error) {
+//     console.error("Unable to select all from database:", error);
+//   }
+// };
 
 const setSchedule = async (classNumber, personId, startDate) => {
   try {
@@ -174,21 +174,21 @@ const setSchedule = async (classNumber, personId, startDate) => {
   }
 };
 
-const testDB = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
+// const testDB = async () => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log("Connection has been established successfully.");
 
-    //await selectAll();
+//     //await selectAll();
 
-    sequelize.close();
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-};
+//     sequelize.close();
+//   } catch (error) {
+//     console.error("Unable to connect to the database:", error);
+//   }
+// };
 
 module.exports = {
-  selectAllClasses: selectAllClasses,
+  // selectAllClasses: selectAllClasses,
   setSchedule: setSchedule,
   createConnection,
 };
