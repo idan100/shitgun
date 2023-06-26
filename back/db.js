@@ -3,29 +3,39 @@ const { Sequelize, DataTypes, where, Op } = require('sequelize');
 
 dotenv.config();
 
-//const Person = sequelize.define('Person', {
-//  id: {
-//    type: DataTypes.STRING,
-//    primaryKey: true
-//  },
-//  name: {
-//    type: DataTypes.STRING,
-//    allowNull: false
-//  },
-//  password: {
-//    type: DataTypes.STRING,
-//    allowNull: false
-//  },
-//  phone_number: {
-//    type: DataTypes.STRING,
-//    allowNull: false
-//  },
-//},
-//  {
-//    tableName: "person",
-//    schema: "keys"
-//  }
-//);
+
+const createPerson = (sequelize) => {
+  try {
+
+    const Person = sequelize.define('Person', {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      phone_number: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+    },
+      {
+        tableName: "person",
+        schema: "keys"
+      }
+    );
+
+    return Person;
+  } catch (error) {
+    console.error('Unable to create connection:', error);
+  }
+}
 
 
 const createClass = (sequelize) => {
@@ -51,6 +61,43 @@ const createClass = (sequelize) => {
       }
     );
     return Class;
+  } catch (error) {
+    console.error('Unable to create connection:', error);
+  }
+}
+
+
+const createSchedule = (sequelize) => {
+  try {
+
+    const Schedule = sequelize.define('Schedule', {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true
+      },
+      person_id: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      class_number: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      start_date: {
+        type: DataTypes.DATE,
+        allowNull: false
+      },
+      end_date: {
+        type: DataTypes.DATE,
+        allowNull: false
+      }
+    },
+      {
+        tableName: "schedule",
+        schema: "keys"
+      }
+    );
+    return Schedule;
   } catch (error) {
     console.error('Unable to create connection:', error);
   }
@@ -86,7 +133,7 @@ const selectAllClasses = async (classNumber) => {
   try {
     const sequelize = createConnection();
     const Class = createClass(sequelize);
-    
+
     const classes = await Class.findAll({
       attributes: { exclude: ['createdAt', 'updatedAt'] },
       where: {
@@ -102,6 +149,25 @@ const selectAllClasses = async (classNumber) => {
     console.error('Unable to select all from database:', error);
   }
 }
+
+const setSchedule = async (classNumber, personId, startDate) => {
+  try {
+    const sequelize = createConnection();
+    const Schedule = createSchedule(sequelize);
+
+    var start = new Date(startDate);
+    var end = start.setHours(start.getHours() + 1);
+    
+    const schedule = await Schedule.create({person_id:personId, class_number:classNumber, start_Date:start,end_date:end});
+
+    sequelize.close();
+    return true;
+  } catch (error) {
+    console.error('Unable to select all from database:', error);
+    return false;
+  }
+}
+
 
 
 const testDB = async () => {
@@ -119,29 +185,7 @@ const testDB = async () => {
 
 
 module.exports = {
-  selectAllClasses: selectAllClasses
+  selectAllClasses: selectAllClasses,
+  setSchedule: setSchedule
 };
 
-
-//testDB();
-
-
-//const express = require('express');
-//const app = express();
-//
-//
-//app.get('/', (req, res) => {
-//  res.send('Hello, world!');
-//});
-//
-//
-//
-////app.use(express.static('build'));
-//
-//
-//const port = 3000; // Or any other port number you prefer
-//
-//app.listen(port, () => {
-//  console.log(`Server running on port ${port}`);
-//});
-//

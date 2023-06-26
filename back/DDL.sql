@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS keys."class"  (
 DROP TABLE IF EXISTS keys.schedule;
 CREATE TABLE IF NOT EXISTS keys.schedule  (
 	id SERIAL PRIMARY KEY,
-	person_id VARCHAR(9) REFERENCES person(id),
-	class_number VARCHAR(3) REFERENCES "class"(class_number),
+	person_id VARCHAR(9) REFERENCES keys.person(id),
+	class_number VARCHAR(3) REFERENCES keys."class"(class_number),
 	start_date TIMESTAMP NOT NULL,
 	end_date TIMESTAMP NOT NULL
 );
