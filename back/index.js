@@ -1,8 +1,11 @@
 const express = require("express");
 const PORT = 3001;
-
+var cors = require('cors')
 const app = express();
-
+var corsOptions = {
+  origin: 'http://localhost:3000',
+}
+app.use(cors(corsOptions))
 const classesRoutes = require("./controllers/classesController");
 const personsRoutes = require("./controllers/personsController");
 const schedulesRoutes = require("./controllers/schedulesController");
