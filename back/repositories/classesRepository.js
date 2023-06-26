@@ -1,8 +1,9 @@
-// const ClassModel = require("../models/Class");
+
 const { Op } = require("sequelize");
 
 const getAllClasses = async (sequelize, classNumber) => {
   try {
+  
     const classes = await sequelize.models.Class.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
       where: {
@@ -17,7 +18,7 @@ const getAllClasses = async (sequelize, classNumber) => {
     throw error;
   } finally {
     if (sequelize) {
-      sequelize.close();
+      // sequelize.close();
     }
   }
 };
