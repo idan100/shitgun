@@ -5,12 +5,16 @@ const app = express();
 var corsOptions = {
   origin: 'http://localhost:3000',
 }
+var bodyParser = require('body-parser')
 app.use(cors(corsOptions))
 const classesRoutes = require("./controllers/classesController");
+const authRoutes = require("./controllers/authController");
 const personsRoutes = require("./controllers/personsController");
 const schedulesRoutes = require("./controllers/schedulesController");
-
+// app.use(bodyParser.urlencoded({ extended: true}))
+app.use(express.json());
 app.use("/classes", classesRoutes);
+app.use("/auth", authRoutes);
 // const classesService = require("./services/classesService");
 // const db = require('./models/db');
 // classesService.createAllClasses(db.connection);
