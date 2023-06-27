@@ -61,9 +61,8 @@ const fetchFreeSchedule = async (sequelize, classNumber, time) => {
       }
     }
 
-    if (isOccupied) {
-      occupiedStatus.push({ hour, person });
-    }
+    occupiedStatus.push({ hour, person: person ?? 'free' });
+
   }
 
   console.log(occupiedStatus);
