@@ -1,6 +1,22 @@
 
 const { Op } = require("sequelize");
 
+const createClass = async(sequelize,classObject) => {
+  try {
+    
+    const createdClass = await sequelize.models.Class.create(
+      classObject
+    );
+    return createdClass;
+
+  } catch (error) {
+    console.error("Unable to fetch classes from the database:", error);
+    throw error;
+  } 
+
+};
+
+
 const getAllClasses = async (sequelize, classNumber) => {
   try {
   
@@ -16,13 +32,10 @@ const getAllClasses = async (sequelize, classNumber) => {
   } catch (error) {
     console.error("Unable to fetch classes from the database:", error);
     throw error;
-  } finally {
-    if (sequelize) {
-      // sequelize.close();
-    }
-  }
+  } 
 };
 
 module.exports = {
   getAllClasses,
+  createClass
 };

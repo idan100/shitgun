@@ -11,6 +11,11 @@ const personsRoutes = require("./controllers/personsController");
 const schedulesRoutes = require("./controllers/schedulesController");
 
 app.use("/classes", classesRoutes);
+// const classesService = require("./services/classesService");
+// const db = require('./models/db');
+// classesService.createAllClasses(db.connection);
+
+
 // app.use("/persons", personsRoutes);
 // app.use("/schedules", schedulesRoutes);
 

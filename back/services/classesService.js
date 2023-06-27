@@ -8,6 +8,22 @@ const getAllClasses = async (sequelize, classNumber) => {
   }
 };
 
+const createAllClasses = async (connection) => {
+  const classes = [];
+  for (let index = 0; index < 1000; index++) {
+    classes.push({
+      class_number: index,
+      has_projector: false,
+      has_computers: false,
+      
+    });
+  }
+
+  await connection.models.Class.bulkCreate(classes, { createdAt: false });
+
+}
+
 module.exports = {
   getAllClasses,
+  createAllClasses
 };

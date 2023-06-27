@@ -20,6 +20,7 @@ module.exports = (sequelize) => {
     {
       tableName: "class",
       schema: "keys",
+      timestamps: false
     }
   );
 
