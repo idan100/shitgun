@@ -1,12 +1,12 @@
 const express = require("express");
 const PORT = 3001;
-var cors = require('cors')
+var cors = require("cors");
 const app = express();
 var corsOptions = {
-  origin: 'http://localhost:3000',
-}
-var bodyParser = require('body-parser')
-app.use(cors(corsOptions))
+  origin: "http://localhost:3000",
+};
+var bodyParser = require("body-parser");
+app.use(cors(corsOptions));
 const classesRoutes = require("./controllers/classesController");
 const authRoutes = require("./controllers/authController");
 const personRoutes = require("./controllers/personController");
@@ -15,12 +15,13 @@ const schedulesRoutes = require("./controllers/schedulesController");
 // app.use(bodyParser.urlencoded({ extended: true}))
 app.use(express.json());
 app.use("/classes", classesRoutes);
+app.use("/schedules", schedulesRoutes);
+app.use("/persons", personsRoutes);
 app.use("/auth", authRoutes);
 app.use("/person", personRoutes);
 // const classesService = require("./services/classesService");
 // const db = require('./models/db');
 // classesService.createAllClasses(db.connection);
-
 
 // app.use("/persons", personsRoutes);
 // app.use("/schedules", schedulesRoutes);

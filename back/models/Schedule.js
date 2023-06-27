@@ -4,10 +4,6 @@ module.exports = (sequelize) => {
   const Schedule = sequelize.define(
     "Schedule",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-      },
       person_id: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,7 +24,7 @@ module.exports = (sequelize) => {
     {
       tableName: "schedule",
       schema: "keys",
-      timestamps: false
+      timestamps: false,
     }
   );
 
