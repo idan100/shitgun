@@ -10,7 +10,23 @@ const auth = async (sequelize, username, password) => {
       }
     );
 
-    return person ? (person.password === password):false;
+    return person ? (person.password === password) : false;
+  } catch (error) {
+    throw error;
+  }
+};
+const createUser = async (sequelize, username, password) => {
+  try {
+    const person = await sequelize.models.Person.build(
+      {
+        id: username,
+        name: '',
+        password: '',
+        phone_number: ''
+      }
+    );
+
+    return person;
   } catch (error) {
     throw error;
   }
@@ -18,5 +34,5 @@ const auth = async (sequelize, username, password) => {
 
 module.exports = {
   auth,
-
+  createUser
 };
