@@ -10,7 +10,7 @@ const auth = async (sequelize, username, password) => {
       }
     );
 
-    return person.password === password;
+    return person ? (person.password === password):false;
   } catch (error) {
     throw error;
   }

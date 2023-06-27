@@ -28,6 +28,7 @@ module.exports = (sequelize) => {
     {
       tableName: "schedule",
       schema: "keys",
+      timestamps: false
     }
   );
 

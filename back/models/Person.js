@@ -24,6 +24,7 @@ module.exports = (sequelize) => {
     {
       tableName: "person",
       schema: "keys",
+      timestamps: false
     }
   );
 
