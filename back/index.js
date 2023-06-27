@@ -9,7 +9,6 @@ var bodyParser = require("body-parser");
 app.use(cors(corsOptions));
 const classesRoutes = require("./controllers/classesController");
 const authRoutes = require("./controllers/authController");
-const personRoutes = require("./controllers/personController");
 const personsRoutes = require("./controllers/personsController");
 const schedulesRoutes = require("./controllers/schedulesController");
 // app.use(bodyParser.urlencoded({ extended: true}))
@@ -18,7 +17,6 @@ app.use("/classes", classesRoutes);
 app.use("/schedules", schedulesRoutes);
 app.use("/persons", personsRoutes);
 app.use("/auth", authRoutes);
-app.use("/person", personRoutes);
 // const classesService = require("./services/classesService");
 // const db = require('./models/db');
 // classesService.createAllClasses(db.connection);

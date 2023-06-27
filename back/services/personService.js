@@ -17,11 +17,11 @@ const auth = async (sequelize, username, password) => {
 };
 const createUser = async (sequelize, username, password) => {
   try {
-    const person = await sequelize.models.Person.build(
+    const person = await sequelize.models.Person.create(
       {
-        id: username,
-        name: '',
-        password: '',
+        id:username,
+        name: username,
+        password,
         phone_number: ''
       }
     );

@@ -6,12 +6,12 @@ const db = require('../models/db');
 
 router.post("/create", async (req, res) => {
   try {
-    const auth = await personService.createUser(
+    const user = await personService.createUser(
       db.connection,
       req.body.username,
       req.body.password,
     );
-    res.json({ approved: auth });
+    res.json({ created: user });
   } catch (error) {
     console.error("Error fetching user:", error);
   }
