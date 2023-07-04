@@ -1,0 +1,17 @@
+.dialogTitle{
+    direction: rtl;
+    background-color: #213cb8;
+    color: white;
+    font-weight: bold;
+}
+
+
+.content{
+    padding:5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.description{
+    direction:rtl;
+}
