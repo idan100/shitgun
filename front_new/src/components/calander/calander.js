@@ -17,6 +17,7 @@ export default function BasicDateCalendar() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
          <DateCalendar value={value} onChange={(newValue) => {
             setLocalStorage(newValue);
+            window.location.reload();
             
             //axios.get(`${process.env.REACT_APP_API}/schedules/free/${localStorage.getItem('class')}/${localStorage.getItem('date')}`)
             //   .then(res => {
