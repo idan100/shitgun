@@ -76,7 +76,7 @@ const createSchedule = (sequelize) => {
           type: DataTypes.INTEGER,
           primaryKey: true,
         },
-        person_id: {
+        username: {
           type: DataTypes.STRING,
           allowNull: false,
         },
@@ -151,7 +151,7 @@ const selectAllPersons = async () => {
 //   }
 // };
 
-const setSchedule = async (classNumber, personId, startDate) => {
+const setSchedule = async (classNumber, username, startDate) => {
   try {
     const sequelize = createConnection();
     const Schedule = createSchedule(sequelize);
@@ -160,7 +160,7 @@ const setSchedule = async (classNumber, personId, startDate) => {
     var end = start.setHours(start.getHours() + 1);
 
     const schedule = await Schedule.create({
-      person_id: personId,
+      username,
       class_number: classNumber,
       start_Date: start,
       end_date: end,

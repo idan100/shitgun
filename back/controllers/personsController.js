@@ -20,9 +20,9 @@ router.post("/create", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    //hardcoded
     const person = await db.connection.models.Person.create({
-      id: 1,
-      name: "addSchedule",
+      username: "idan",
       password: "asd",
       phone_number: 123,
     });

@@ -4,13 +4,9 @@ module.exports = (sequelize) => {
   const Person = sequelize.define(
     "Person",
     {
-      id: {
+      username: {
         type: DataTypes.STRING,
         primaryKey: true,
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
@@ -24,7 +20,7 @@ module.exports = (sequelize) => {
     {
       tableName: "person",
       schema: "keys",
-      timestamps: false
+      timestamps: false,
     }
   );
 

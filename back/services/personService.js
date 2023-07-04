@@ -17,10 +17,10 @@ const auth = async (sequelize, username, password) => {
 };
 const createUser = async (sequelize, username, password) => {
   try {
+    //hardcoded
     const person = await sequelize.models.Person.create(
       {
-        id:username,
-        name: username,
+        username: username,
         password,
         phone_number: ''
       }

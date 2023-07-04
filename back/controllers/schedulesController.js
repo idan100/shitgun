@@ -21,6 +21,7 @@ router.get("/free/:classNumber/:time", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const schedule = await scheduleService.fetchAllSchedule(db.connection);
+    // console.log(schedule);
     res.json({ schedule });
   } catch (error) {
     console.error("Error fetching schedule:", error);
