@@ -32,8 +32,8 @@ import TextField from '@mui/material/TextField';
 const HomeScreen = () => {
 
   useEffect(() => {
-    window.localStorage.setItem('date', dayjs(new Date()));
-    window.localStorage.setItem('class', 101);
+    //window.localStorage.setItem('date', dayjs(new Date()));
+    //window.localStorage.setItem('class', 101);
 
     axios.get(`${process.env.REACT_APP_API}/schedules/free/${localStorage.getItem('class')}/${localStorage.getItem('date')}`)
       .then(res => {
@@ -62,7 +62,6 @@ const HomeScreen = () => {
   const [calanderOpen, setCalanderOpen] = React.useState(false);
 
   const showCalanderDialog = (row) => {
-
     setCalanderOpen(true);
   }
 
