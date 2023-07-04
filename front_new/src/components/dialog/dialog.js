@@ -35,7 +35,8 @@ function SimpleDialog(props) {
     await axios.post(
       `${process.env.REACT_APP_API}/schedules/${localStorage.getItem(
         "class"
-      )}/${date}`
+      )}/${date}`,
+      { username: localStorage.getItem("username") }
     );
     handleClose();
   };

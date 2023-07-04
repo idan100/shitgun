@@ -1,12 +1,12 @@
 const { Op } = require("sequelize");
 const dayjs = require("dayjs");
 
-const addSchedule = async (sequelize, classNumber, time) => {
+const addSchedule = async (sequelize, classNumber, time, username) => {
   try {
-    console.log(time);
+    console.log(new Date(time));
     const endDate = dayjs(time).add(30, "minute").toDate();
     const classes = await sequelize.models.Schedule.create({
-      username: "idan",
+      username: username,
       class_number: classNumber,
       start_date: new Date(time),
       end_date: endDate,
@@ -65,7 +65,6 @@ const fetchFreeSchedule = async (sequelize, classNumber, time) => {
     occupiedStatus.push({ hour, person: person ?? "free" });
   }
 
-  console.log(occupiedStatus);
   return occupiedStatus;
 };
 
@@ -77,7 +76,7 @@ const fetchAllSchedule = async (sequelize) => {
     [...schedules].map((schedule) => {
       schedule.start_date = new Date(schedule.start_date).toLocaleDateString();
       schedule.end_date = new Date(schedule.end_date).toLocaleDateString();
-      console.log()
+      console.log();
       return schedule;
     });
     console.log(schedules);
