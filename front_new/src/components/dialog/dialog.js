@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import { blue } from "@mui/material/colors";
 import "./calander.css";
 import axios from "axios";
+import dayjs from 'dayjs';
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
@@ -35,15 +36,20 @@ function SimpleDialog(props) {
     date.setHours(localStorage.getItem("hour").split(":")[0]);
     date.setMinutes(localStorage.getItem("hour").split(":")[1]);
     date.setSeconds(0);
-    console.log(date);
-    await axios.post(
-      `${process.env.REACT_APP_API}/schedules/${localStorage.getItem(
-        "class"
-      )}/${date}`,
-      { username: localStorage.getItem("username") }
-    );
-    handleClose();
-    window.location.reload();
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API}/schedules/${localStorage.getItem(
+          "class"
+        )}/${date}`,
+        { username: localStorage.getItem("username") }
+      );
+      handleClose();
+      window.location.reload();
+      return true;
+    }
+    catch{
+      return false;
+    }
   };
 
   if (solidier === "פנוי") {
@@ -55,7 +61,7 @@ function SimpleDialog(props) {
             {" "}
             כיתה מספר {localStorage.getItem("class")}
           </p>
-          <p className="description"> תאריך {localStorage.getItem("date")} </p>
+          <p className="description"> תאריך {dayjs(localStorage.getItem("date")).format('DD/MM/YYYY')} </p>
           <p className="description"> שעה {localStorage.getItem("hour")}</p>
           <Button
             variant="contained"
@@ -73,7 +79,7 @@ function SimpleDialog(props) {
         <DialogTitle className="dialogTitle"> תקלה, הכיתה תפוסה</DialogTitle>
         <div className="content">
           <p className="description"> כיתה {localStorage.getItem("class")}</p>
-          <p className="description"> תאריך {localStorage.getItem("date")} </p>
+          <p className="description"> תאריך {dayjs(localStorage.getItem("date")).format('DD/MM/YYYY')} </p>
           <p className="description"> שעה {localStorage.getItem("hour")}</p>
           <p className="description">אל תתבייש תן לו צלצול</p>
           <a
