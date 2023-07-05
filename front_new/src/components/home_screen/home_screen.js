@@ -43,9 +43,8 @@ const HomeScreen = () => {
       })
   }, []);
 
-  const [open, setOpen] = React.useState(false);
-
   const [rows, setRows] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
 
   const [searchOptions, setSearchOptions] = React.useState([100, 101, 102, 103, 104]);
 
@@ -58,6 +57,12 @@ const HomeScreen = () => {
 
   const handleClose = () => {
     setOpen(false);
+    axios.get(`${process.env.REACT_APP_API}/schedules/free/${localStorage.getItem('class')}/${localStorage.getItem('date')}`)
+      .then(res => {
+        setRows(res.data.schedule.map(row => ({ name: row.person === 'free' ? 'פנוי' : row.person, hour: Math.floor(row.hour) === row.hour ? `${row.hour}:00` : `${Math.floor(row.hour)}:30` })));
+      }).catch(err => {
+        console.log(err)
+      })
   }
   const [calanderOpen, setCalanderOpen] = React.useState(false);
 

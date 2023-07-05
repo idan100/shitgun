@@ -18,6 +18,9 @@ import "./calander.css";
 import axios from "axios";
 import dayjs from 'dayjs';
 
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
 function SimpleDialog(props) {
@@ -28,6 +31,8 @@ function SimpleDialog(props) {
   };
 
   const addSchedule = async () => {
+    const toastId = 'fetched-nationalities';
+
     const date = new Date(localStorage.getItem("date"))//.toLocaleString(); //check what time comes back
     date.setHours(localStorage.getItem("hour").split(":")[0]);
     date.setMinutes(localStorage.getItem("hour").split(":")[1]);
@@ -40,10 +45,24 @@ function SimpleDialog(props) {
         { username: localStorage.getItem("username") }
       );
       handleClose();
-      window.location.reload();
+      toast.success("כיתה נקבעה בהצלחה!", {
+        position: toast.POSITION.BOTTOM_LEFT,
+        autoClose: 3000, //3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        toastId,
+        transition: Slide
+      });
+      //window.location.reload();
       return true;
     }
-    catch{
+    catch {
+      toast.error('לא הצלחנו לקבוע את הכיתה... נסה שוב מאוחר יותר!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        toastId
+      });
       return false;
     }
   };
@@ -86,6 +105,8 @@ export default function DialogComponnent(props, { handleClose }) {
         open={props.open}
         onClose={props.handleClose}
       />
+      <div className="toast-container"><ToastContainer rtl limit={2} /></div>
+
     </div>
   );
 }
