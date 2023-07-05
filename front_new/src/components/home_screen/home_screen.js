@@ -32,8 +32,8 @@ import TextField from '@mui/material/TextField';
 const HomeScreen = () => {
 
   useEffect(() => {
-    //window.localStorage.setItem('date', new Date());
-    //window.localStorage.setItem('class', 101);
+    window.localStorage.setItem('date', new Date());
+    window.localStorage.setItem('class', 101);
 
     axios.get(`${process.env.REACT_APP_API}/schedules/free/${localStorage.getItem('class')}/${localStorage.getItem('date')}`)
       .then(res => {
@@ -45,6 +45,7 @@ const HomeScreen = () => {
 
   const [rows, setRows] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [takenBy, setSolidier] = React.useState('פנוי');
 
   const [searchOptions, setSearchOptions] = React.useState([100, 101, 102, 103, 104]);
 
