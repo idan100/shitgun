@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS keys.schedule  (
 	id SERIAL PRIMARY KEY,
 	username TEXT REFERENCES keys.person(username),
 	class_number VARCHAR(3) REFERENCES keys."class"(class_number),
-	start_date TIMESTAMP NOT NULL,
-	end_date TIMESTAMP NOT NULL
+	start_date TIMESTAMP WITH TIME ZONE NOT NULL,
+	end_date TIMESTAMP WITH TIME ZONE NOT NULL
 );

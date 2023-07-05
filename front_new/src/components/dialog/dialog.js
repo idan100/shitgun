@@ -27,7 +27,7 @@ function SimpleDialog(props) {
   };
 
   const addSchedule = async () => {
-    const date = new Date(localStorage.getItem("date"));
+    const date = new Date(localStorage.getItem("date"))//.toLocaleString(); //check what time comes back
     date.setHours(localStorage.getItem("hour").split(":")[0]);
     date.setMinutes(localStorage.getItem("hour").split(":")[1]);
     date.setSeconds(0);
@@ -39,6 +39,7 @@ function SimpleDialog(props) {
       { username: localStorage.getItem("username") }
     );
     handleClose();
+    window.location.reload();
   };
 
   return (

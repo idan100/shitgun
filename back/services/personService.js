@@ -5,7 +5,7 @@ const auth = async (sequelize, username, password) => {
     const person = await sequelize.models.Person.findOne(
       {
         where: {
-          id: username,
+          username: username,
         }
       }
     );
