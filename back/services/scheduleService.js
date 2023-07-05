@@ -3,10 +3,6 @@ const dayjs = require("dayjs");
 
 const addSchedule = async (sequelize, classNumber, time, username) => {
   try {
-    const timeZone = 'Asia/Jerusalem';
-
-    const formattedTime = new Date(time).toLocaleString('he-IS', { timeZone });
-    console.log("time is - " + formattedTime);
     const startDate = new Date(time);
     const endDate = dayjs(time).add(30, "minute").toDate();
     const classes = await sequelize.models.Schedule.create({
