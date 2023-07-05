@@ -45,6 +45,8 @@ const HomeScreen = () => {
 
   const [open, setOpen] = React.useState(false);
 
+  const [takenBy, setSolidier] = React.useState('פנוי');
+
   const [rows, setRows] = React.useState([]);
 
   const [searchOptions, setSearchOptions] = React.useState([100, 101, 102, 103, 104]);
@@ -54,6 +56,7 @@ const HomeScreen = () => {
     console.log(row)
     window.localStorage.setItem('hour', row.hour);
     setOpen(true);
+    setSolidier(row.name)
   }
 
   const handleClose = () => {
@@ -164,7 +167,7 @@ const HomeScreen = () => {
           </Table>
         </TableContainer>
       </div>
-      <DialogComponnent open={open} handleClose={handleClose}></DialogComponnent>
+      <DialogComponnent open={open} handleClose={handleClose} solidier={takenBy} ></DialogComponnent>
       <CalanderDialogComponnent open={calanderOpen} handleClose={handleCalanderClose}></CalanderDialogComponnent>
     </div>
 
