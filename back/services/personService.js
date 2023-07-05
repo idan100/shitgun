@@ -1,6 +1,6 @@
 const classesRepository = require("../repositories/classesRepository");
 
-const auth = async (sequelize, username, password) => {
+const auth = async (sequelize, username) => {
   try {
     const person = await sequelize.models.Person.findOne(
       {
@@ -9,8 +9,8 @@ const auth = async (sequelize, username, password) => {
         }
       }
     );
-
-    return person ? (person.password === password) : false;
+    
+    return person;
   } catch (error) {
     throw error;
   }

@@ -53,6 +53,7 @@ const HomeScreen = () => {
     console.log(row)
     window.localStorage.setItem('hour', row.hour);
     setOpen(true);
+    setSolidier(row.name)
   }
 
   const handleClose = () => {
@@ -169,7 +170,7 @@ const HomeScreen = () => {
           </Table>
         </TableContainer>
       </div>
-      <DialogComponnent open={open} handleClose={handleClose}></DialogComponnent>
+      <DialogComponnent open={open} handleClose={handleClose} solidier={takenBy} ></DialogComponnent>
       <CalanderDialogComponnent open={calanderOpen} handleClose={handleCalanderClose}></CalanderDialogComponnent>
     </div>
 
