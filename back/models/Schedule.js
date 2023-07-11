@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   const Schedule = sequelize.define(
     "Schedule",
     {
-      person_id: {
+      username: {
         type: DataTypes.STRING,
         allowNull: false,
       },

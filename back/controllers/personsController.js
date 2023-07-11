@@ -1,14 +1,28 @@
 const express = require("express");
 const router = express.Router();
 const { createConnection } = require("../db");
-// const scheduleService = require("../services/personsService");
-const db = require("../models/db");
+const personService = require("../services/personService");
+const db = require('../models/db');
+
+router.post("/create", async (req, res) => {
+  try {
+    const user = await personService.createUser(
+      db.connection,
+      req.body.username,
+      req.body.password,
+    );
+    res.json({ created: user });
+  } catch (error) {
+    console.error("Error fetching user:", error);
+  }
+});
+
 
 router.post("/", async (req, res) => {
   try {
+    //hardcoded
     const person = await db.connection.models.Person.create({
-      id: 1,
-      name: "addSchedule",
+      username: "idan",
       password: "asd",
       phone_number: 123,
     });

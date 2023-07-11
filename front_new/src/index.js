@@ -7,8 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { heIL } from '@mui/material/locale';
 
-
-
+// require('dotenv').config({ "crypto": false });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

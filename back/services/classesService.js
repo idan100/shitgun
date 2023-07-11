@@ -10,6 +10,7 @@ const getAllClasses = async (sequelize, classNumber) => {
 
 const createAllClasses = async (connection) => {
   const classes = [];
+  //hardcoded
   for (let index = 0; index < 1000; index++) {
     classes.push({
       class_number: index,

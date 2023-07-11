@@ -9,6 +9,10 @@
   .logo-container {
     margin-bottom: 20px;
   }
+
+  .alert{
+    margin-top: 5%;
+  }
   
   .row{
     direction: rtl;

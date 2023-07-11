@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS keys.person;
 CREATE TABLE IF NOT EXISTS keys.person  (
-		id VARCHAR(9) PRIMARY KEY,
-		name TEXT NOT NULL,
+		username TEXT PRIMARY KEY,
 		password TEXT NOT NULL,
 		phone_number TEXT NOT NULL
 );
@@ -16,8 +15,8 @@ CREATE TABLE IF NOT EXISTS keys."class"  (
 DROP TABLE IF EXISTS keys.schedule;
 CREATE TABLE IF NOT EXISTS keys.schedule  (
 	id SERIAL PRIMARY KEY,
-	person_id VARCHAR(9) REFERENCES keys.person(id),
+	username TEXT REFERENCES keys.person(username),
 	class_number VARCHAR(3) REFERENCES keys."class"(class_number),
-	start_date TIMESTAMP NOT NULL,
-	end_date TIMESTAMP NOT NULL
+	start_date TIMESTAMP WITH TIME ZONE NOT NULL,
+	end_date TIMESTAMP WITH TIME ZONE NOT NULL
 );

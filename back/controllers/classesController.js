@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { createConnection } = require("../db");
 const classesService = require("../services/classesService");
-const db = require('../models/db');
+const db = require("../models/db");
 
 router.get("/:classNumber", async (req, res) => {
   try {
