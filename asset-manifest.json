@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/shitgun/static/css/main.31929af5.css",
+    "main.js": "/shitgun/static/js/main.48361c42.js",
+    "static/js/787.28cb0dcd.chunk.js": "/shitgun/static/js/787.28cb0dcd.chunk.js",
+    "static/media/pure-css-snow-animation.gif": "/shitgun/static/media/pure-css-snow-animation.334f2d3994391278e853.gif",
+    "static/media/Bahad_1_Symbol.SVG": "/shitgun/static/media/Bahad_1_Symbol.2665e87c3026a93fa95f.SVG",
+    "static/media/user1.avif": "/shitgun/static/media/user1.be705c15996a8d4fa47d.avif",
+    "index.html": "/shitgun/index.html",
+    "main.31929af5.css.map": "/shitgun/static/css/main.31929af5.css.map",
+    "main.48361c42.js.map": "/shitgun/static/js/main.48361c42.js.map",
+    "787.28cb0dcd.chunk.js.map": "/shitgun/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31929af5.css",
+    "static/js/main.48361c42.js"
+  ]
+}
