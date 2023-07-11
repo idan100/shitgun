@@ -1,16 +1,16 @@
 const { Op } = require("sequelize");
 const dayjs = require("dayjs");
 
-const addSchedule = async (sequelize, classNumber, time) => {
+const addSchedule = async (sequelize, classNumber, time, username) => {
   try {
-    const endDate = dayjs(time).add(1, "hour").toDate();
+    const startDate = new Date(time);
+    const endDate = dayjs(time).add(30, "minute").toDate();
     const classes = await sequelize.models.Schedule.create({
-      person_id: 1,
+      username: username,
       class_number: classNumber,
-      start_date: new Date(time),
+      start_date: startDate,
       end_date: endDate,
     });
-
     return classes;
   } catch (error) {
     throw error;
@@ -19,7 +19,7 @@ const addSchedule = async (sequelize, classNumber, time) => {
 
 const fetchFreeSchedule = async (sequelize, classNumber, time) => {
   const hoursInDay = [];
-  for (let hour = 0; hour < 24; hour++) {
+  for (let hour = 6; hour < 24; hour++) {
     for (let halfHour = 0; halfHour < 2; halfHour++) {
       const time = hour + halfHour / 2;
       hoursInDay.push(time);
@@ -56,27 +56,30 @@ const fetchFreeSchedule = async (sequelize, classNumber, time) => {
 
       if (hour >= startHour && hour < endHour) {
         isOccupied = true;
-        person = schedule.person_id;
+        person = schedule.username;
         break;
       }
     }
 
-    if (isOccupied) {
-      occupiedStatus.push({ hour, person });
-    }
+    occupiedStatus.push({ hour, person: person ?? "free" });
   }
 
-  console.log(occupiedStatus);
   return occupiedStatus;
 };
 
 const fetchAllSchedule = async (sequelize) => {
   try {
-    const classes = await sequelize.models.Schedule.findAll({
+    const schedules = await sequelize.models.Schedule.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
-
-    return classes;
+    [...schedules].map((schedule) => {
+      schedule.start_date = new Date(schedule.start_date).toLocaleDateString();
+      schedule.end_date = new Date(schedule.end_date).toLocaleDateString();
+      console.log();
+      return schedule;
+    });
+    console.log(schedules);
+    return schedules;
   } catch (error) {
     throw error;
   }

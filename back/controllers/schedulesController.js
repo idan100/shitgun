@@ -9,7 +9,7 @@ router.get("/free/:classNumber/:time", async (req, res) => {
     const schedule = await scheduleService.fetchFreeSchedule(
       db.connection,
       req.params.classNumber,
-      req.params.time
+      req.params.time,
     );
     res.json({ schedule });
   } catch (error) {
@@ -33,7 +33,8 @@ router.post("/:classNumber/:time", async (req, res) => {
     const schedule = await scheduleService.addSchedule(
       db.connection,
       req.params.classNumber,
-      req.params.time
+      req.params.time,
+      req.body.username
     );
     res.json({ schedule });
   } catch (error) {
